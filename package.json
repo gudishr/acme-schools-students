@@ -1,17 +1,36 @@
 {
   "name": "acme-schools-students",
   "version": "1.0.0",
-  "description": "",
-  "main": "db.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "webpack": "webpack --watch --mode=development",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "babel": {
+    "presets": [
+      "@babel/react"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "babel-loader": "^8.0.6",
     "express": "^4.17.1",
     "pg": "^7.12.1",
-    "sequelize": "^5.19.4"
-  }
+    "sequelize": "^5.19.4",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gudishr/acme-schools-students.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gudishr/acme-schools-students/issues"
+  },
+  "homepage": "https://github.com/gudishr/acme-schools-students#readme",
+  "description": ""
 }

@@ -20,6 +20,8 @@ app.get('/api/schools', async (req, res, next) => {
     .catch(next)
 })
 
-app.listen(3000, ()=> console.log("Listening at port 3000"))
-
 syncAndSeed()
+  .then(app.listen(3000, ()=> console.log("Listening at port 3000")))
+  .catch((ex) => {
+    throw ex
+  })

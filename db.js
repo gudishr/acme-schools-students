@@ -39,13 +39,13 @@ const School = conn.define('school', {
   }
 })
 
-Student.belongsTo(School);
-School.hasMany(Student, {as : 'students', foreignKey: 'schoolId'})
+Student.belongsTo(School)
+School.hasMany(Student)
 
 const syncAndSeed = async() => {
   await conn.sync({ force : true })
 
-  const schools = [
+  const schools_arr = [
     { name : 'MIT' },
     { name : 'Harvard' },
     { name : 'UCLA' },
@@ -54,16 +54,16 @@ const syncAndSeed = async() => {
     { name : 'Apex Tech' }
   ]
 
-  const [mit, harvard, ucla, ccny, brown, aptech] = await Promise.all(schools.map(school => School.create(school)))
+  const [mit, harvard, ucla, ccny, brown, aptech] = await Promise.all(schools_arr.map(_school => School.create(_school)))
 
-  const students = [
+  const students_arr = [
     { firstName : 'Shruti', lastName : 'Gudi', email : 'sg@xyz.com', gpa : 5.68, schoolId : mit.id},
     { firstName : 'Lou', lastName : 'Preston', email : 'Loupreston@xyz.com', gpa : 8.23, schoolId :  ucla.id},
     { firstName : 'Crystal', lastName : 'Daz', email : 'crystal@xyz.com', gpa : 7.44, schoolId :  mit.id},
     { firstName : 'Vincent', lastName : 'Gomes', email : 'vgomes@xyz.com', gpa : 4.12, schoolId :  harvard.id},
   ];
 
-  const [shruti, lou, crystal, vincent] = await Promise.all(students.map(student => Student.create(student)))
+  const [shruti, lou, crystal, vincent] = await Promise.all(students_arr.map(_student => Student.create(_student)))
 }
 
 module.exports = {
