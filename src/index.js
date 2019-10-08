@@ -1,45 +1,51 @@
-// const { NavLink, Link, HashRouter, Route } = ReactRouterDOM
-// const { combineReducers, createStore } = Redux
-// const { Provider, connect } = ReactRedux
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore, combineReducers } from 'redux'
+import { Provider, connect } from 'react-redux'
+import { HashRouter, Link, Route } from 'react-router-dom'
 
-// const Nav = ({ students, schools }) => {
-//     return(
-//       <nav>
-//         <NavLink to="/students">Students</NavLink>
-//         <NavLink to="/schools">Schools</NavLink>
-//       </nav>
-// )}
+import Nav from './Nav'
+import Home from './Home'
+import Student from './Student'
 
-// // const Nav = connect(
-// //   ({ students, schools })=> {
-// //   return {
-// //     students,
-// //     schools
-// //   };
-// // }
-// // )(_Nav);
+const Nav = ({ students, schools }) => {
+    return(
+      <nav>
+        <NavLink to="/students">Students</NavLink>
+        <NavLink to="/schools">Schools</NavLink>
+      </nav>
+)}
 
-// class App extends React.Component{
-//   // componentDidMount(){
-//   //   this.props.getStudents()
-//   // }
-//   render(){
-//     return (
-//         <HashRouter>
-//           <Route component = { Nav } />
-//           {/* <Route component = { Students } /> */}
-//         </HashRouter>
-//   )}
+// const Nav = connect(
+//   ({ students, schools })=> {
+//   return {
+//     students,
+//     schools
+//   };
 // }
+// )(_Nav);
 
-// // const App = connect(({ students })=> {
-// // return {
-// // students
-// // };
-// // }, (dispatch)=> {
-// // return {
-// // getStudents: ()=> dispatch(getStudents())
-// // };
-// // })(_App);
+class App extends React.Component{
+  // componentDidMount(){
+  //   this.props.getStudents()
+  // }
+  render(){
+    return (
+        <HashRouter>
+          <Route component = { Nav } />
+          {/* <Route component = { Students } /> */}
+        </HashRouter>
+  )}
+}
 
-// React.render(<App />, document.querySelector('#root'))
+// const App = connect(({ students })=> {
+// return {
+// students
+// };
+// }, (dispatch)=> {
+// return {
+// getStudents: ()=> dispatch(getStudents())
+// };
+// })(_App);
+
+React.render(<App />, document.querySelector('#root'))
