@@ -20,5 +20,11 @@ app.get('/api/schools', async (req, res, next) => {
     .catch(next)
 })
 
+app.delete('/api/students/:id', (req, res, next) => {
+  models.Student.findByPk(req.params.id)
+      .then(student => student.destroy())
+      .catch(next)
+})
+
 syncAndSeed()
   .then(app.listen(3000, ()=> console.log("Listening at port 3000")))

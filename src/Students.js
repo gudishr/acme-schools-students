@@ -1,11 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import ReactDOM from 'react-dom'
-import { getSchools } from './Store';
+import { destroyStudent } from './Store';
 
 class _Students extends React.Component{
   render(){
-    const { students, schools } = this.props
+    const { students, schools, destroyStudent } = this.props
     return (
       <div className="students">
         { students.map(student => <li key={ student.id }>
@@ -15,7 +14,7 @@ class _Students extends React.Component{
             <option value="None">Not Enrolled</option>
             {schools.map(school => <option key={school.id} selected={school.id === student.schoolId ? "selected" : ""} value={school.name}>{school.name}</option>)}
           </select>
-          {/* <button></button> */}
+          <button onClick = {() => destroyStudent(student)}>Destroy Student</button>
         </li>
         )}
       </div>    
@@ -29,6 +28,12 @@ const mapStateToProps = ({students, schools}) => {
   )
 }
 
-const Students = connect(mapStateToProps)(_Students)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    destroyStudent: (student)=> dispatch(destroyStudent(student)),
+    }
+}
+
+const Students = connect(mapStateToProps, mapDispatchToProps)(_Students)
 
 export default Students

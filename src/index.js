@@ -7,6 +7,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom'
 import Nav from './Nav'
 import Students from './Students'
 import store, { getStudents, getSchools } from './store' 
+import Schools from './Schools';
 
 class _App extends React.Component{
   componentDidMount(){
@@ -19,7 +20,8 @@ class _App extends React.Component{
         <HashRouter>
           <Route component = { Nav } />
           <Switch>
-            <Route exact path="/students" component = { Students } />
+            <Route path="/students" component = { Students } />
+            <Route exact path="/schools" component = { Schools } />
           </Switch>
         </HashRouter>
   )}
