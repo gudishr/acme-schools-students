@@ -1,51 +1,43 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, combineReducers } from 'redux'
+
 import { Provider, connect } from 'react-redux'
-import { HashRouter, Link, Route } from 'react-router-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 
 import Nav from './Nav'
-import Home from './Home'
-import Student from './Student'
+import Students from './Students'
+import store, { getStudents, getSchools } from './store' 
 
-const Nav = ({ students, schools }) => {
-    return(
-      <nav>
-        <NavLink to="/students">Students</NavLink>
-        <NavLink to="/schools">Schools</NavLink>
-      </nav>
-)}
+class _App extends React.Component{
+  componentDidMount(){
+    this.props.fetchStudents()
+    this.props.fetchSchools()
+  }
 
-// const Nav = connect(
-//   ({ students, schools })=> {
-//   return {
-//     students,
-//     schools
-//   };
-// }
-// )(_Nav);
-
-class App extends React.Component{
-  // componentDidMount(){
-  //   this.props.getStudents()
-  // }
   render(){
     return (
         <HashRouter>
           <Route component = { Nav } />
-          {/* <Route component = { Students } /> */}
+          <Switch>
+            <Route exact path="/students" component = { Students } />
+          </Switch>
         </HashRouter>
   )}
 }
 
-// const App = connect(({ students })=> {
-// return {
-// students
-// };
-// }, (dispatch)=> {
-// return {
-// getStudents: ()=> dispatch(getStudents())
-// };
-// })(_App);
+const mapStateToProps = ({students, schools}) => {
+  return (
+    {students, schools}
+  )
+}
 
-React.render(<App />, document.querySelector('#root'))
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchStudents: ()=> dispatch(getStudents()),
+    fetchSchools: ()=> dispatch(getSchools()),
+    }
+}
+
+const App = connect(mapStateToProps, mapDispatchToProps)(_App);
+
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.querySelector('#root'))

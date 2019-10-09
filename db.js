@@ -57,8 +57,8 @@ const syncAndSeed = async() => {
   const [mit, harvard, ucla, ccny, brown, aptech] = await Promise.all(schools_arr.map(_school => School.create(_school)))
 
   const students_arr = [
-    { firstName : 'Shruti', lastName : 'Gudi', email : 'sg@xyz.com', gpa : 5.68, schoolId : mit.id},
-    { firstName : 'Lou', lastName : 'Preston', email : 'Loupreston@xyz.com', gpa : 8.23, schoolId :  ucla.id},
+    { firstName : 'Sara', lastName : 'Smith', email : 'ss@xyz.com', gpa : 5.68, schoolId : mit.id},
+    { firstName : 'John', lastName : 'Smith', email : 'johnsmith@xyz.com', gpa : 8.23, schoolId :  ucla.id},
     { firstName : 'Crystal', lastName : 'Daz', email : 'crystal@xyz.com', gpa : 7.44, schoolId :  mit.id},
     { firstName : 'Vincent', lastName : 'Gomes', email : 'vgomes@xyz.com', gpa : 4.12, schoolId :  harvard.id},
   ];
