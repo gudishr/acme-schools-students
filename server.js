@@ -26,5 +26,15 @@ app.delete('/api/students/:id', (req, res, next) => {
       .catch(next)
 })
 
+app.put('/api/students/:id', async (req,res,next) =>{
+  try {
+    const instance = await models.Student.findByPk(req.params.id);
+    Object.assign(instance, req.body);
+    await instance.save();
+    res.send(instance);
+  }
+  catch(ex){ next(ex) }
+})
+
 syncAndSeed()
   .then(app.listen(3000, ()=> console.log("Listening at port 3000")))

@@ -5,11 +5,13 @@ import thunks from 'redux-thunk'
 
 //constants
 const SET_STUDENTS = 'SET_STUDENTS'
+const UPDATE_STUDENT = 'UPDATE_STUDENT'
 const DESTROY_STUDENT = 'DESTROY_STUDENT'
 const SET_SCHOOLS = 'SET_SCHOOLS'
 
 //action creators
 const setStudents = (students)=> ({ type: SET_STUDENTS, students })
+const _updateStudent = (student) => ({ type: UPDATE_STUDENT, student })
 const _destroyStudent = (student)=> ({ type: DESTROY_STUDENT, student })
 const setSchools = (schools)=> ({ type: SET_SCHOOLS, schools })
 
@@ -18,6 +20,13 @@ const getStudents = ()=> {
   return async(dispatch)=> {
       const students = (await axios.get('/api/students')).data
       return dispatch(setStudents(students))
+  }
+}
+
+const updateStudent = (student)=> {
+  return async(dispatch)=> {
+    await axios.put(`/api/students/${student.id}`, student)
+    return dispatch(_updateStudent(student))
   }
 }
 
@@ -45,6 +54,9 @@ const store = createStore(
       if(action.type === DESTROY_STUDENT){
         return state.filter(student => student.id !== action.student.id)
       }
+      if(action.type === UPDATE_STUDENT){
+        return state.map(student => student.id === action.student.id ? action.student : student)
+      }
       return state
     },
     schools: (state = [], action)=> {
@@ -58,4 +70,4 @@ const store = createStore(
 
 export default store
 
-export { getStudents, getSchools, destroyStudent }
+export { getStudents, getSchools, destroyStudent, updateStudent }
