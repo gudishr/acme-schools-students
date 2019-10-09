@@ -12,18 +12,7 @@ class _CreateStudent extends React.Component{
       gpa: '',
       schoolId: '',
     }
-    // this.create = this.create.bind(this)
-    // this.onChange = this.onChange.bind(this)
   }
-
-  // async create(){
-  //   try {
-  //     await this.props.create(this.state)
-  //   }
-  //   catch(ex){
-  //     console.log(ex)
-  //   }
-  // }
 
   render(){
     const { lastName, email, gpa, schoolId } = this.state
