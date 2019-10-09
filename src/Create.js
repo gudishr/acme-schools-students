@@ -19,7 +19,6 @@ class _CreateStudent extends React.Component{
     const { createStudent, schools } = this.props
     return (
       <div className="createstudent">
-        {/* { error && <div className='error'>{ error}</div> } */}
         First Name <input name="firstName" value={ this.state.firstName } onChange={(ev)=> this.setState({ firstName: ev.target.value})} />
         Last Name <input name="lastName" value={ lastName } onChange={(ev)=> this.setState({ lastName: ev.target.value})} />
         Email <input name="email" value={ email } onChange={(ev)=> this.setState({ email: ev.target.value})} />
