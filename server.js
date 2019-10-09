@@ -36,5 +36,11 @@ app.put('/api/students/:id', async (req,res,next) =>{
   catch(ex){ next(ex) }
 })
 
+app.post('/api/students/', (req, res, next) => {
+  models.Student.create(req.body)
+      .then(student => res.status(201).send(student))
+      .catch(next)
+})
+
 syncAndSeed()
   .then(app.listen(3000, ()=> console.log("Listening at port 3000")))

@@ -9,6 +9,7 @@ import Students from './Students'
 import School from './School'
 import store, { getStudents, getSchools } from './store' 
 import Schools from './Schools';
+import CreateStudent from './Create'
 
 class _App extends React.Component{
   componentDidMount(){
@@ -20,6 +21,7 @@ class _App extends React.Component{
     return (
         <HashRouter>
           <Route component = { Nav } />
+          <CreateStudent />
           <Switch>
             <Route path="/students" component = { Students } />
             <Route exact path="/schools" component = { Schools } />
