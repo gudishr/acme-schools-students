@@ -40,6 +40,6 @@
   "homepage": "https://github.com/gudishr/acme-schools-students#readme",
   "description": "",
   "dependencies": {
-    "axios": "^0.19.0"
+    "axios": "^0.21.1"
   }
 }
